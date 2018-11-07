@@ -9,11 +9,7 @@ import ProgressBar
 # read the config
 cp = configparser.ConfigParser()
 cp.read(os.path.abspath('..')+'/setting.conf')
-protocol = cp.get('repo','protocol')
-host = cp.get('repo', 'host')
-port = cp.get('repo', 'port')
-dir = cp.get('repo', 'dir')
-repo_url = protocol+"://"+host+":"+port+dir;
+repo_url = cp.get('repo','url');
 
 # get the model name, for example: my_model_alex.h5
 model_name = sys.argv[1]
@@ -25,8 +21,6 @@ local_model_url=os.path.abspath('..')+"/model/"+model_name  #the model url in th
 # never download for twice
 if( os.path.exists(local_model_url)):
     exit("The "+model_name+" is already in your system. No need to download once more");
-
-
 
 # get the response head and get the content_size
 with closing(requests.get(model_url, stream=True)) as response:
@@ -44,3 +38,4 @@ with closing(requests.get(model_url, stream=True)) as response:
            sum += len(data)
            ProgressBar.view_bar(sum,content_size);
     print('\n')
+    print("Module "+model_name+" installed.");

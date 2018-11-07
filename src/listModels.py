@@ -8,11 +8,7 @@ sys.path.append(os.path.abspath('.'))
 # read the config
 cp = configparser.ConfigParser()
 cp.read(os.path.abspath('..')+'/setting.conf')
-protocol = cp.get('repo','protocol')
-host = cp.get('repo', 'host')
-port = cp.get('repo', 'port')
-dir = cp.get('repo', 'dir')
-repo_url = protocol+"://"+host+":"+port+dir;
+repo_url = cp.get('repo', 'url');
 info_url = repo_url+"/info"
 
 with closing(requests.get(info_url)) as response:
