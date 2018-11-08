@@ -4,10 +4,7 @@ arg1=$2
 arg2=$3
 
 case $option in
-    # install)
-    #     cd /home/aipm_dev
-    #     docker build -t aipm/dev:0.0.1 .
-    #     ;;
+
     start)
         docker run -it aipm/dev:0.0.1 /bin/bash
         ;;
