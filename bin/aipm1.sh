@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 option=$1
 arg1=$2
 arg2=$3
@@ -16,8 +17,10 @@ case $option in
     install)
         if [ ! $arg1 ]; then
         echo 'Input the Model you are to install please. For example: aipm install fake_model1'
+        elif [ ! $arg2 ]; then
+        arg2='default'
         fi
-        python /home/aipm_dev/src/getModel.py $arg1
+        python /home/aipm_dev/src/InstallModel.py $arg1 $arg2
         ;;
     run)
         if [ ! $arg1 ]; then

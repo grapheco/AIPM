@@ -62,7 +62,7 @@ def main(image_path):
     Height = 224
     X_test = load_data(image_path)
 
-    model = load_model('/aipm_dev/model/my_model_alex.h5')
+    model = load_model('/aipm_dev/model/DogOrCat')
     ans = model.predict(X_test)
 
     record_ans(ans)
