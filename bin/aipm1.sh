@@ -26,7 +26,8 @@ case $option in
         if [ ! $arg2 ]; then
         echo 'Input the data you are to deal with please'
         fi
-        docker exec -t aipm_devtest01 python -W ignore /aipm_dev/src/getImageCategory.py $arg2 
+        docker start aipm_$arg1 
+        docker exec -t aipm_$arg1 python -W ignore /aipm_dev/src/getImageCategory.py $arg2
         ;;
     *)
         echo 'Illegal instruction, check your input please.'

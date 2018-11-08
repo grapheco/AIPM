@@ -3,21 +3,28 @@ import sys
 import os
 import configparser
 sys.path.append(os.path.abspath('.'))
-from GetModel import downloadModel
+from FetchModel import downloadModel
+from FetchInfo import fetchInfo
+
 
 # read the repo config
 cp = configparser.ConfigParser()
 cp.read(os.path.abspath('..')+'/setting.conf')
 repo_url = cp.get('repo','url');
 
+#fetch the version info
+local_info_url = fetchInfo(repo_url)
+# read the server version info
+cp_version = configparser.ConfigParser()
+cp_version.read(local_info_url)
+
 # get the model name and version, default to be latest
 model_name = sys.argv[1]
-if( sys.argv[2] == 'default' or len(sys.argv) == 2 ):
+if(len(sys.argv) == 2 or sys.argv[2] == 'default'):
     print("No version input, default to be latest.");
-    version = "0.0.3";
+    version = cp_version.get(model_name, 'default')
 else:
     version = sys.argv[2]
-
 
 model_dir = repo_url + model_name +'/' + version # the model dir in the server system
 model_url = model_dir + '/' + model_name + '.model'
@@ -33,3 +40,11 @@ if (r.status_code==404):
 with open(local_dependency_url,"wb") as dependency:
     dependency.write(r.content)
 
+#build the image and run the container
+#stop the old container
+os.system('docker stop aipm_'+model_name)
+#remove the old image
+os.system('docker rmi aipm:'+model_name)
+os.system('docker build -t aipm:'+model_name+' -f '+local_dependency_url+' .')
+os.system('docker rm aipm_'+model_name)
+os.system('docker run -itd --name=aipm_'+model_name+' -v /home/aipm_dev:/aipm_dev --privileged=true aipm:'+model_name+' /bin/bash')
