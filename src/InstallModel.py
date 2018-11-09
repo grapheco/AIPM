@@ -46,5 +46,5 @@ os.system('docker stop aipm_'+model_name)
 #remove the old image
 os.system('docker rmi aipm:'+model_name)
 os.system('docker build -t aipm:'+model_name+' -f '+local_dependency_url+' .')
-os.system('docker rm aipm_'+model_name)
+#os.system('docker rm aipm_'+model_name)
 os.system('docker run -itd --name=aipm_'+model_name+' -v /home/AIPM:/AIPM --privileged=true aipm:'+model_name+' /bin/bash')
