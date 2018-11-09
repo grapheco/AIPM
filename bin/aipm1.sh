@@ -9,7 +9,7 @@ case $option in
         docker run -it aipm/dev:0.0.1 /bin/bash
         ;;
     listmodels)
-        python /home/aipm_dev/src/listModels.py
+        python /home/AIPM/src/listModels.py
         ;;
     install)
         if [ ! $arg1 ]; then
@@ -17,7 +17,7 @@ case $option in
         elif [ ! $arg2 ]; then
         arg2='default'
         fi
-        python /home/aipm_dev/src/InstallModel.py $arg1 $arg2
+        python /home/AIPM/src/InstallModel.py $arg1 $arg2
         ;;
     run)
         if [ ! $arg1 ]; then
@@ -26,8 +26,8 @@ case $option in
         if [ ! $arg2 ]; then
         echo 'Input the data you are to deal with please'
         fi
-        docker start aipm_$arg1 
-        docker exec -t aipm_$arg1 python -W ignore /aipm_dev/src/getImageCategory.py $arg2
+        docker start aipm_$arg1
+        docker exec -t aipm_$arg1 python -W ignore /AIPM/src/getImageCategory.py $arg2
         ;;
     *)
         echo 'Illegal instruction, check your input please.'

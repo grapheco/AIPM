@@ -38,7 +38,7 @@ def load_data(path):
 
 def record_ans(ans):
 
-    filename = '/aipm_dev/data/temp/anstemp'
+    filename = '/AIPM/data/temp/anstemp'
     if(os.path.exists(filename)):
         os.remove(filename)
 
@@ -62,7 +62,7 @@ def main(image_path):
     Height = 224
     X_test = load_data(image_path)
 
-    model = load_model('/aipm_dev/model/DogOrCat/0.0.3/DogOrCat.model')
+    model = load_model('/AIPM/model/DogOrCat/0.0.3/DogOrCat.model')
     ans = model.predict(X_test)
 
     record_ans(ans)

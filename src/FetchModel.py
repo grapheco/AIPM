@@ -5,7 +5,6 @@ import os
 sys.path.append(os.path.abspath('.'))
 import ProgressBar
 
-
 def downloadModel(model_name, version, model_url):
 
     # the model url in the client system
