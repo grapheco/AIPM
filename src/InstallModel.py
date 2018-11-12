@@ -33,14 +33,15 @@ model_url = model_dir + '/' + model_name + '.model'
 dependency_url = repo_url + model_name + '/'+'dependency'
 local_dependency_url = "/AIPM/model/"+model_name+ '/dependency'
 
+downloadModel(model_name,version, model_url);
 # Download the dockerfile
+
+if(os.path.exists("/AIPM/model/"+model_name+'/')==False):
+        os.mkdir("/AIPM/model/"+model_name+'/');
+if(os.path.exists(local_dependency_url)==False):
+        os.mknod(local_dependency_url)
 r = requests.get(dependency_url)
 if (r.status_code==404):
     exit("The resource doesn't exist, make sure your modelname and version are right.")
 with open(local_dependency_url,"wb") as dependency:
     dependency.write(r.content)
-
-downloadModel(model_name,version, model_url);
-
-
-
