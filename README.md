@@ -14,6 +14,7 @@ complex environment problem.
 
 ####Hardware:
 - 20G or more space on disk
+- 8G or more RAM
 
 #### Software:
 - Docker 18.06.1-ce or later ce version
@@ -27,6 +28,7 @@ complex environment problem.
 2. git clone https://github.com/Airzihao/AIPM.git
 3. cd /home/AIPM/bin
 4. bash aipm_install.sh 
+5. source ~/.bashrc
 ```
 Please build the AIPM as root user.
 
