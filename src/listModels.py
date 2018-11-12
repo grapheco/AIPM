@@ -7,7 +7,7 @@ sys.path.append(os.path.abspath('.'))
 
 # read the config
 cp = configparser.ConfigParser()
-cp.read(os.path.abspath('..')+'/setting.conf')
+cp.read('/AIPM/setting.conf')
 repo_url = cp.get('repo', 'url');
 info_url = repo_url+"/info"
 
@@ -17,7 +17,7 @@ with closing(requests.get(info_url)) as response:
 
     info = response.content;
     # local cache the repo infomation
-    local_tempInfo_url = os.path.abspath("..")+"/cache"+"tempInfo"
+    local_tempInfo_url = "/AIPM/cache"+"tempInfo"
     if os.path.exists(local_tempInfo_url):
         os.remove(local_tempInfo_url);
     os.mknod(local_tempInfo_url)

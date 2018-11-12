@@ -1,7 +1,7 @@
 import requests
 import os
 def fetchInfo(repo_url):
-    local_info_url = os.path.abspath('..') + '/cache/version_info'
+    local_info_url = '/AIPM/cache/version_info'
     if(os.path.exists(local_info_url)):
         os.remove(local_info_url)
     else:

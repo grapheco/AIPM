@@ -16,18 +16,23 @@ complex environment problem.
 - 20G or more space on disk
 
 #### Software:
-- Docker 18.06.1-ce
-- Ubuntu 16.04 / CentOS 7 or later stable version
+- Docker 18.06.1-ce or later ce version
+- CentOS 7 or later stable version
 - Git
 - python3  (default) 
 
 ###Build instruction：
 ```
-1. cd /home #Because of the problems about path, we highly recommend you deployed the AIPM under /home. Don't worry that you will be able to uninstall it easily and thotoughly.
+1. cd /home 
 2. git clone https://github.com/Airzihao/AIPM.git
 3. cd /home/AIPM/bin
-4. bash aipm_install.sh #Depening on your network, the progress will take about 10mins, be patient and don't shut the cmd.
+4. bash aipm_install.sh 
 ```
+Please build the AIPM as root user.
+
+Because of the problems about path, we highly recommend you deployed the AIPM under /home. Don't worry that you will be able to uninstall it easily and thotoughly.
+
+Depening on your network, the progress will take about 15mins, be patient and don't shut the cmd.
 
 ### Commands
 ```angular2html
@@ -35,3 +40,6 @@ complex environment problem.
 aipm install DogOrCat 0.0.1 #the version can be omitted 
 aipm run DogOrCat /AIPM/data/images
 ```
+
+
+

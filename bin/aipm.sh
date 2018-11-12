@@ -17,17 +17,21 @@ case $option in
         elif [ ! $arg2 ]; then
         arg2='default'
         fi
-        python /home/AIPM/src/InstallModel.py $arg1 $arg2
+        docker exec -t aipm_base python /AIPM/src/InstallModel.py $arg1 $arg2 &&
+        bash /home/AIPM/bin/docker_start.sh $arg1
+
         ;;
     run)
         if [ ! $arg1 ]; then
         echo 'Input the model you are to run please.'
+        exit
         fi
         if [ ! $arg2 ]; then
         echo 'Input the data you are to deal with please'
+        exit
         fi
         docker start aipm_$arg1
-        docker exec -t aipm_$arg1 python -W ignore /AIPM/src/getImageCategory.py $arg2
+        docker exec -t aipm_$arg1 python -W ignore /AIPM/src/$arg1.py $arg2
         ;;
     *)
         echo 'Illegal instruction, check your input please.'
