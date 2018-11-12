@@ -21,20 +21,26 @@ cp_version.read(local_info_url)
 model_name = sys.argv[1]
 if(len(sys.argv) == 2 or sys.argv[2] == 'default'):
     print("No version input, default to be latest.");
-    version = cp_version.get(model_name, 'default')
+    try:
+        version = cp_version.get(model_name, 'default')
+    except configparser.NoSectionError:
+        exit("Can't find the version_info for your model, check your input please.")
 else:
     version = sys.argv[2]
 
 model_dir = repo_url + model_name +'/' + version # the model dir in the server system
 model_url = model_dir + '/' + model_name + '.model'
-dependency_url = model_dir + '/'+'dependency'
-local_dependency_url = "/AIPM/model/"+model_name+'/'+version + '/dependency'
+dependency_url = repo_url + model_name + '/'+'dependency'
+local_dependency_url = "/AIPM/model/"+model_name+ '/dependency'
 
-downloadModel(model_name,version, model_url);
 # Download the dockerfile
 r = requests.get(dependency_url)
 if (r.status_code==404):
     exit("The resource doesn't exist, make sure your modelname and version are right.")
 with open(local_dependency_url,"wb") as dependency:
     dependency.write(r.content)
+
+downloadModel(model_name,version, model_url);
+
+
 
