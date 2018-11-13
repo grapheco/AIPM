@@ -4,6 +4,8 @@ import sys
 import os
 from keras.models import load_model
 
+dir = os.path.dirname(__file__)
+root_dir = os.path.dirname(dir)
 file_path = []
 
 def get_path(path):
@@ -42,7 +44,7 @@ def load_data(path):
 
 def record_ans(ans):
 
-    filename = '/AIPM/data/temp/anstemp'
+    filename = root_dir+'/data/temp/anstemp'
     if(os.path.exists(filename)):
         os.remove(filename)
 
@@ -66,7 +68,7 @@ def main(image_path):
     Height = 224
     X_test = load_data(image_path)
 
-    model = load_model('/AIPM/model/DogOrCat/0.0.3/DogOrCat.model')
+    model = load_model(root_dir+'/model/DogOrCat/0.0.3/DogOrCat.model')
     ans = model.predict(X_test)
 
     record_ans(ans)

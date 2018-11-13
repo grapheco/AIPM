@@ -3,13 +3,13 @@ option=$1
 arg1=$2
 arg2=$3
 
+now=$(cd `dirname $0`; pwd)
+root_dir=$(cd $(dirname $now);  pwd)
+
 case $option in
 
-    start)
-        docker run -it aipm/dev:0.0.1 /bin/bash
-        ;;
     listmodels)
-        python /home/AIPM/src/listModels.py
+        python $root_dir/aipmLib/listModels.py
         ;;
     install)
         if [ ! $arg1 ]; then
@@ -17,8 +17,8 @@ case $option in
         elif [ ! $arg2 ]; then
         arg2='default'
         fi
-        docker exec -t aipm_base python /AIPM/src/InstallModel.py $arg1 $arg2 &&
-        bash /home/AIPM/bin/docker_start.sh $arg1
+        docker exec -t aipm_base python $root_dir/aipmLib/InstallModel.py $arg1 $arg2 &&
+        bash $root_dir/bin/docker_start.sh $arg1
 
         ;;
     run)
@@ -27,11 +27,11 @@ case $option in
         exit
         fi
         if [ ! $arg2 ]; then
-        echo 'Input the data you are to deal with please'
+        echo 'Input the data you are to deal with please.'
         exit
         fi
         docker start aipm_$arg1
-        docker exec -t aipm_$arg1 python -W ignore /AIPM/src/$arg1.py $arg2
+        docker exec -t aipm_$arg1 python -W ignore $root_dir/src/$arg1.py $arg2
         ;;
     *)
         echo 'Illegal instruction, check your input please.'
