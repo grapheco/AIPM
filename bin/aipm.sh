@@ -18,6 +18,7 @@ case $option in
         elif [ ! $arg2 ]; then
         arg2='default'
         fi ;
+        docker restart aipm_base ;
         docker exec -t aipm_base python $root_dir/aipmLib/InstallModel.py $arg1 $arg2 &&
         bash $root_dir/bin/docker_start.sh $arg1
 
