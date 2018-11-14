@@ -23,6 +23,7 @@ with closing(requests.get(info_url)) as response:
     if os.path.exists(local_tempInfo_url):
         os.remove(local_tempInfo_url);
     os.mknod(local_tempInfo_url)
+    os.chmod(local_tempInfo_url,0o755)
     with(open(local_tempInfo_url,"wb")) as file:
         file.write(response.content)
     # TO DO: set the info in json format on server and parser the json locally

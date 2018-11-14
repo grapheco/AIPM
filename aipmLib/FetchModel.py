@@ -34,6 +34,7 @@ def downloadModel(model_name, version, model_url):
         if(os.path.exists(local_model_dir)==False):
             os.mkdir(local_model_dir)
         os.mknod(local_model_url)
+        os.chmod(local_model_url,0o755)
         sum = 0
         with open(local_model_url, "wb") as file:
             for data in response.iter_content(chunk_size=chunk_size):

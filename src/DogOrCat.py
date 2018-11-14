@@ -49,6 +49,7 @@ def record_ans(ans):
         os.remove(filename)
 
     os.mknod(filename)
+    os.chmod(filename,0o755)
 
     with open(filename, 'w') as f:
         j = 0

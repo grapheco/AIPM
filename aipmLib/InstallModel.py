@@ -45,6 +45,7 @@ if(os.path.exists(root_dir+"/model/"+model_name+'/')==False):
         os.mkdir(root_dir+"/model/"+model_name+'/');
 if(os.path.exists(local_dependency_url)==False):
         os.mknod(local_dependency_url)
+        os.chmod(local_dependency_url,0o755)
 r = requests.get(dependency_url)
 if (r.status_code==404):
     exit("The resource doesn't exist, make sure your modelname and version are right.")

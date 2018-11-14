@@ -11,7 +11,7 @@ def fetchInfo(repo_url):
         os.remove(local_info_url)
     else:
         os.mknod(local_info_url)
-
+        os.chmod(local_info_url, 0o755)
     r = requests.get(repo_url+'version_info')
     with open(local_info_url, "wb") as info:
         info.write(r.content)
