@@ -18,9 +18,11 @@ case $option in
         elif [ ! $arg2 ]; then
         arg2='default'
         fi ;
-        docker restart aipm_base ;
+
+        docker start aipm_base ;
         docker exec -t aipm_base python $root_dir/aipmLib/InstallModel.py $arg1 $arg2 &&
-        bash $root_dir/bin/docker_start.sh $arg1
+        bash $root_dir/bin/docker_start.sh $arg1 ;
+        docker kill aipm_base
 
         ;;
     run)
@@ -33,7 +35,8 @@ case $option in
         exit
         fi
         docker start aipm_$arg1 ;
-        docker exec -t aipm_$arg1 python -W ignore $root_dir/src/$arg1.py $arg2
+        docker exec -t aipm_$arg1 python -W ignore $root_dir/src/$arg1.py $arg2 ;
+        docker kill aipm_$arg1
         ;;
     *)
         echo 'Illegal instruction, check your input please.'
