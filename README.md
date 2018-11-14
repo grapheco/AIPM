@@ -1,5 +1,7 @@
 # AIPM
 
+如果您习惯于阅读中文版自述文件，请移步[README_CN.md](https://github.com/Airzihao/AIPM/blob/master/README_CN.md)。
+
 Artificial Intelligence Package Management is a 
 powerful tool, which can help you to install models from
 repo server, and run it locally.
@@ -12,7 +14,7 @@ complex environment problem.
 
 
 
-####Hardware:
+#### Hardware:
 - 20G or more space on disk
 - 8G or more RAM
 
@@ -25,20 +27,19 @@ complex environment problem.
 
 
 
-###Build instruction：
+### Build instruction：
 ``` 
-1. git clone https://github.com/Airzihao/AIPM.git
-2. cd ../AIPM/bin
-3. bash aipm_install.sh 
+git clone https://github.com/Airzihao/AIPM.git
+bash ../AIPM/bin/aipm_install.sh 
 ```
-Depening on your network, the progress will take about 15mins, be patient and don't shut the cmd.
+Depending on your network, the install progress may take about 15mins, be patient and don't kill the install process.
 
 
 ### Commands
 
 ```angular2html
-aipm install DogOrCat 0.0.1 #the version can be omitted 
-aipm run DogOrCat ../AIPM/data/images
+aipm install DogOrCat 0.0.1 #If the version number is unsigned, the latest version will be installed.
+aipm run DogOrCat ../AIPM/data/images #You can input filename or a dir including the data, but use absolute dir please.
 ```
 
 
