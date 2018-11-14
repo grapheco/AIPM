@@ -30,7 +30,7 @@ complex environment problem.
 ### Build instruction：
 ``` 
 git clone https://github.com/Airzihao/AIPM.git
-bash ../AIPM/bin/aipm_install.sh 
+sudo bash ../AIPM/bin/aipm_install.sh 
 ```
 Depending on your network, the install progress may take about 15mins, be patient and don't kill the install process.
 
@@ -41,6 +41,13 @@ Depending on your network, the install progress may take about 15mins, be patien
 aipm install DogOrCat 0.0.1 #If the version number is unsigned, the latest version will be installed.
 aipm run DogOrCat ../AIPM/data/images #You can input filename or a dir including the data, but use absolute dir please.
 ```
+Make sure the login user is added into the docker user group, or it requires sudo permission to run the aipm command.
 
+You can use the following commands to add the login user into the docker user group.
+```
+sudo groupadd docker
+sudo gpasswd -a $USER docker
+newgrp docker
+```
 
 

@@ -19,9 +19,9 @@
 ### 构建说明：
 ``` 
 git clone https://github.com/Airzihao/AIPM.git
-bash ../AIPM/bin/aipm_install.sh 
+sudo bash ../AIPM/bin/aipm_install.sh 
 ```
-
+执行安装脚本需要sudo权限。
 根据您的网络环境，构建过程可能花费大约15分钟，请耐心等待，不要终止安装进程。
 
 
@@ -31,4 +31,11 @@ bash ../AIPM/bin/aipm_install.sh
 aipm install DogOrCat 0.0.1 #t版本号可以省略，当未指明版本号时，默认安装最新版本。
 aipm run DogOrCat ../AIPM/data/images #输入数据支持文件或路径，但请使用绝对路径。
 ```
+请确认当前登陆用户在docker用户组内，否则运行aipm命令时，将需要sudo权限以使用docker。
 
+可以使用如下命令将当前登陆用户添加到docker用户组：
+```
+sudo groupadd docker
+sudo gpasswd -a $USER docker
+newgrp docker
+```
